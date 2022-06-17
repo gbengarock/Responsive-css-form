@@ -1,4 +1,4 @@
-  html {
+   html {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -146,9 +146,27 @@
     margin: 10px;
  }
 
-.error img{
-    display: none;
-}
+ .success-icon,
+ .failure-icon {
+   right: 0;
+   opacity: 0;
+ }
+ 
+ .failure-icon,
+ .error {
+   color: red;
+ }
+ 
+ .success-icon {
+   color: green;
+ }
+ 
+ .error {
+   font-size: 11px;
+   margin-top: 5px;
+   float: right;
+ }
+ 
 
   /* ==========================================================================
      #CARD
