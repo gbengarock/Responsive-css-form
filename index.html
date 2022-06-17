@@ -40,24 +40,34 @@
 
             <div class="card-4">
                 <div class="card-body">
-                    <form method="POST">
+                    <form id="form">
 
                                 <div class="input-group">
-                                    <input class="error input--style-4" type="text" name="first_name" placeholder="First Name">
+                                    <input class="input--style-4" type="text" name="first_name" id="first_name" placeholder="First Name">
+                                    <i class="fas fa-exclamation-circle failure-icon"></i>
+                                    <i class="far fa-check-circle success-icon"></i>
+                                    <div class="error"></div>
                                 </div>
 
-
-
                                 <div class="input-group">
-                                   <input class="error input--style-4" type="text" name="last_name" placeholder="Last Name">
+                                   <input class="input--style-4" type="text" name="last_name" id="last_name" placeholder="Last Name">
+                                   <i class="fas fa-exclamation-circle failure-icon"></i>
+                                   <i class="far fa-check-circle success-icon"></i>
+                                   <div class="error"></div>
                                 </div>
                         
                                 <div class="input-group">
-                                    <input class="error input--style-4" type="email" name="email" placeholder="Email Address" require>
+                                    <input class="input--style-4" type="email" name="email" id="email" placeholder="Email Address">
+                                    <i class="fas fa-exclamation-circle failure-icon"></i>
+                                    <i class="far fa-check-circle success-icon"></i>
+                                    <div class="error"></div>
                                 </div>
 
                                 <div class="input-group">
-                                    <input class="error input--style-4" type="password" name="phone" placeholder="Password" require>
+                                    <input class="input--style-4" type="password" name="password" id="password" placeholder="Password">
+                                    <i class="far fa-exclamation-circle failure-icon"></i>
+                                    <i class="far fa-check-circle success-icon"></i>
+                                    <div class="error"></div>
                                 </div>
                        
                                 <div>
@@ -74,7 +84,52 @@
    
 
     </div>
+    <script type="text/javascript">
+        let id = (id) => document.getElementById(id);
 
+        let classes = (classes) => document.getElementsByClassName(classes);
+
+        let first_name = id("first_name"),
+        last_name = id("last_name"),
+        email = id("email"),
+        password = id("password"),
+        form = id("form"),
+        errorMsg = classes("error"),
+        successIcon = classes("success-icon"),
+        failureIcon = classes("failure-icon");
+
+// Adding the submit event Listener
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  engine(first_name, 0, "First Name cannot be blank");
+  engine(last_name, 1, "Last Name cannot be blank");
+  engine(email, 2, "Email cannot be blank");
+  engine(password, 3, "Password cannot be blank");
+});
+
+// engine function which will do all the works
+
+let engine = (id, serial, message) => {
+  if (id.value.trim() === "") {
+    errorMsg[serial].innerHTML = message;
+    id.style.border = "2px solid red";
+
+    // icons
+    failureIcon[serial].style.opacity = "1";
+    successIcon[serial].style.opacity = "0";
+  } else {
+    errorMsg[serial].innerHTML = "";
+    id.style.border = "2px solid green";
+
+    // icons
+    failureIcon[serial].style.opacity = "0";
+    successIcon[serial].style.opacity = "1";
+  }
+};
+
+    </script>
    
     
 </body>
